@@ -41,6 +41,7 @@ const VENTURES = [
   { name: 'Lucky Egg', role: 'Summer 2026', jobs: [null, '#m-luckyegg', null, null] },
   { name: 'Bento Games', role: 'Solo build', jobs: ['#bento', null, null, null] },
   { name: 'Smart Glove', role: 'In progress', jobs: ['#glove', null, null, null] },
+  { name: 'First Chair', role: 'Personal app', jobs: ['#firstchair', null, null, null] },
   { name: 'Project impACT', role: 'Senior ambassador', jobs: [null, null, '#r-impact', '#c-impact'] },
 ];
 
@@ -61,7 +62,7 @@ function renderGrid() {
 const BPM = 124;
 const BEAT = 60 / BPM;
 // A minor pentatonic, top row highest
-const NOTES = [659.25, 587.33, 523.25, 440, 392, 329.63, 293.66, 261.63, 220];
+const NOTES = [784, 659.25, 587.33, 523.25, 440, 392, 329.63, 293.66, 261.63, 220];
 
 const audio = { ctx: null, master: null, analyser: null, data: null, noise: null, playing: false, step: 0, next: 0, timer: 0 };
 
@@ -328,7 +329,7 @@ function feeds() {
   const io = new IntersectionObserver((entries) => {
     entries.forEach(({ target, isIntersecting }) => target.classList.toggle('is-off', !isIntersecting));
   });
-  document.querySelectorAll('.feed').forEach((f) => io.observe(f));
+  document.querySelectorAll('.feed, .ads').forEach((f) => io.observe(f));
 }
 
 // ---------- The song: play button, seek bar and a live four-colour waveform ----------

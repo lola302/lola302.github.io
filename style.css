@@ -306,9 +306,36 @@ td.is-step .pad:not(.on) { border-color: var(--c); }
   column-gap: clamp(16px, 2vw, 28px);
   align-items: center;
 }
-.glove__photos { grid-column: span 8; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+/* The glove strip is flipped (text left, photos right) so it doesn't echo First Chair above it */
+.glove__photos { grid-column: 5 / -1; grid-row: 1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
 .glove__photos img { width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border: 1px solid var(--line); }
-.card--e .card__meta { grid-column: 9 / -1; padding: 0 0 0 clamp(0px, 2vw, 24px); }
+.card--e .card__meta { grid-column: 1 / span 4; grid-row: 1; padding: 0 clamp(0px, 2vw, 24px) 0 0; }
+
+/* First Chair: a phone-sized recording standing on a green stage */
+.card--strip {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2vw, 28px);
+  align-items: center;
+}
+.stage {
+  grid-column: span 7;
+  display: grid;
+  place-items: center;
+  padding: clamp(24px, 4vw, 56px) 0;
+  background: var(--c);
+}
+.stage video {
+  display: block;
+  width: auto;
+  height: clamp(24rem, 40vw, 36rem);
+  aspect-ratio: 390 / 844;
+  object-fit: cover;
+  background: var(--bg);
+  border: 6px solid #0d0e0c;
+}
+.card--strip .card__meta { grid-column: 9 / -1; padding-top: 0; }
 
 .card__media {
   position: relative;
@@ -357,8 +384,8 @@ td.is-step .pad:not(.on) { border-color: var(--c); }
   gap: clamp(28px, 2.4vw, 32px) clamp(16px, 2vw, 28px);
   margin-top: 48px;
 }
-/* Two colour blocks on top, three self-scrolling feeds below */
-.tile--a, .tile--b { grid-column: span 6; }
+/* Outside Club across the top, then three tiles, then Karos with two feeds */
+.tile--wide { grid-column: 1 / -1; }
 .tile--feed { grid-column: span 4; }
 
 .tile__block {
@@ -372,8 +399,35 @@ td.is-step .pad:not(.on) { border-color: var(--c); }
 }
 .tile--feed .tile__block { height: var(--row-b); }
 .tile--feed .tile__big { font-size: clamp(3rem, 5.5vw, 5.5rem); }
-.tile__block--ink { color: var(--bg); background: var(--fg); }
-.tile__block--ink .tile__big { color: var(--market); }
+.ads-row { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: clamp(16px, 2vw, 28px); }
+.ads-row .tile__block { grid-column: span 4; }
+.ads { grid-column: span 8; height: var(--row-a); overflow: hidden; }
+.ads__track { display: flex; width: max-content; height: 100%; }
+/* margin, not gap, so the track is exactly two identical halves and -50% loops without a jump */
+.ads__track img { width: auto; height: 100%; aspect-ratio: 1; margin-right: 8px; }
+@media (prefers-reduced-motion: no-preference) {
+  .ads__track { animation: ads-scroll 36s linear infinite; }
+  .ads:hover .ads__track, .ads.is-off .ads__track { animation-play-state: paused; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ads { overflow-x: auto; }
+}
+@keyframes ads-scroll {
+  to { transform: translateX(-50%); }
+}
+
+.tile__photo { height: var(--row-b); overflow: hidden; background: #ffffff; border: 1px solid var(--line); }
+.tile__photo img { width: 100%; height: 100%; object-fit: cover; }
+
+.tile--karos {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: clamp(16px, 2vw, 28px);
+  align-items: end;
+}
+.feeds2 { grid-column: 1 / span 8; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 2vw, 28px); }
+.tile--karos .card__meta { grid-column: 9 / -1; padding-top: 0; }
+.feed__cap { margin-top: 8px; font-family: var(--mono); font-size: 12.5px; color: var(--mute); }
 .tile__big {
   font-size: clamp(3.5rem, 8vw, 7.5rem);
   font-weight: 800;
@@ -553,10 +607,15 @@ td.is-step .pad:not(.on) { border-color: var(--c); }
   .pad { height: 30px; }
 
   .build > * { grid-column: 1 / -1; }
-  .card--e { grid-template-columns: 1fr; }
-  .glove__photos, .card--e .card__meta { grid-column: 1 / -1; }
+  .card--e, .card--strip, .tile--karos, .ads-row { grid-template-columns: 1fr; }
+  .glove__photos, .card--e .card__meta, .stage, .card--strip .card__meta,
+  .feeds2, .tile--karos .card__meta, .ads-row .tile__block, .ads { grid-column: 1 / -1; grid-row: auto; }
   .glove__photos { grid-template-columns: 1fr 1fr; }
-  .card--e .card__meta { padding-top: 16px; }
+  .card--e .card__meta, .card--strip .card__meta, .tile--karos .card__meta { padding: 16px 0 0; }
+  .stage video { height: 26rem; }
+  .ads-row { row-gap: 12px; }
+  .ads { height: 15rem; }
+  .feeds2 .feed { height: 22rem; }
 
   .market > *, .make > * { grid-column: 1 / -1; }
   .market { --row-a: 15rem; --row-b: 30rem; }

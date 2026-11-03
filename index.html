@@ -167,6 +167,19 @@
           </div>
         </article>
 
+        <article class="card card--strip reveal" id="firstchair">
+          <div class="stage">
+            <video muted loop playsinline preload="none" poster="media/firstchair.jpg" aria-label="Screen recording of First Chair: ticking off a training session, then the plan calendar and extra workouts">
+              <source src="media/firstchair.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="card__meta">
+            <p class="card__role">Personal app</p>
+            <h3 class="card__name">First Chair</h3>
+            <p class="card__line">A ski-season training app I built for myself: a 45-day plan to opening day, with daily sessions, habits to tick off, and a calendar where every day is graded like a ski run, from green circle to black diamond.</p>
+          </div>
+        </article>
+
         <article class="card card--e reveal" id="glove">
           <!-- When the glove video arrives, it replaces these four photos -->
           <div class="glove__photos">
@@ -195,33 +208,34 @@
       <p class="sect__kind">Marketing &amp; growth</p>
 
       <div class="market">
-        <!-- When the Outside Club ads arrive, the number block makes way for them -->
-        <article class="tile tile--a reveal" id="m-outside">
-          <div class="tile__block">
-            <span class="tile__big">200+</span>
-            <span class="tile__small">signups in the first two weeks after launch</span>
+        <!-- The ads slide past on their own. Each one is in twice so the loop has no seam. -->
+        <article class="tile tile--wide reveal" id="m-outside">
+          <div class="ads-row">
+            <div class="tile__block">
+              <span class="tile__big">200+</span>
+              <span class="tile__small">signups in the first two weeks after launch</span>
+            </div>
+            <div class="ads">
+              <div class="ads__track">
+                <img src="img/ad-1.jpg" width="900" height="900" alt="Outside Club ad: Asleep at 2am? This screenless band could tell a different story." loading="lazy">
+                <img src="img/ad-2.jpg" width="900" height="900" alt="Outside Club ad: Your kids say they're fine. This screenless band explores the stress behind it." loading="lazy">
+                <img src="img/ad-3.jpg" width="900" height="900" alt="Outside Club ad: Kids' tech company turns sleep and activity data into personalised printed magazines." loading="lazy">
+                <img src="img/ad-4.jpg" width="900" height="900" alt="Outside Club ad: Kids' tech ditches apps. Your kid gets mail. They're the cover story." loading="lazy">
+                <img src="img/ad-1.jpg" width="900" height="900" alt="" aria-hidden="true" loading="lazy">
+                <img src="img/ad-2.jpg" width="900" height="900" alt="" aria-hidden="true" loading="lazy">
+                <img src="img/ad-3.jpg" width="900" height="900" alt="" aria-hidden="true" loading="lazy">
+                <img src="img/ad-4.jpg" width="900" height="900" alt="" aria-hidden="true" loading="lazy">
+              </div>
+            </div>
           </div>
           <div class="card__meta">
             <p class="card__role">Meta ads &amp; product</p>
             <h3 class="card__name">Outside Club</h3>
-            <p class="card__line">A screenless watch that helps kids move more, sleep better, handle stress and anxiety, and understand their bodies. I created and ran our Meta ads, and now work on the product.</p>
+            <p class="card__line">A screenless watch that helps kids move more, sleep better, handle stress and anxiety, and understand their bodies. I made and ran our Meta ads, these included, and now work on the product.</p>
           </div>
         </article>
 
-        <article class="tile tile--b reveal" id="m-luckyegg">
-          <div class="tile__block tile__block--ink">
-            <span class="tile__big">#2</span>
-            <span class="tile__small">on The Sunday Times 100, the UK's fastest-growing companies, 2026</span>
-          </div>
-          <div class="card__meta">
-            <p class="card__role">Summer 2026</p>
-            <h3 class="card__name">Lucky Egg</h3>
-            <p class="card__line">Two months at the games company. I helped create the French editions of Misheard Music and Misheard Movies.</p>
-            <a class="card__link" href="https://businesscloud.co.uk/news/the-sunday-times-100-revealed-for-2026/" target="_blank" rel="noopener">The ranking <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
-          </div>
-        </article>
-
-        <!-- Three feeds that scroll on their own, like phones side by side. Each image is in twice so the loop has no seam. -->
+        <!-- Feeds scroll on their own, like phones side by side. Each image is in twice so the loop has no seam. -->
         <article class="tile tile--feed reveal" id="m-sitti">
           <div class="feed" style="--feed-time: 46s">
             <div class="feed__track">
@@ -250,18 +264,45 @@
           </div>
         </article>
 
-        <article class="tile tile--feed reveal" id="m-karos">
-          <div class="feed" style="--feed-time: 40s">
-            <div class="feed__track">
-              <img src="img/feed-karos.jpg" width="934" height="1660" alt="Twelve Karos Labs explainer reels: Netflix, the iPhone ad clock, YouTube Premium, Tesla and more" loading="lazy">
-              <img src="img/feed-karos.jpg" width="934" height="1660" alt="" aria-hidden="true" loading="lazy">
-            </div>
+        <article class="tile tile--feed reveal" id="m-luckyegg">
+          <figure class="tile__photo">
+            <img src="img/misheard-music.jpg" width="910" height="900" alt="The Misheard Music box beside two of its cards: darn zinc ween, which is Dancing Queen" loading="lazy">
+          </figure>
+          <div class="card__meta">
+            <p class="card__role">Summer 2026</p>
+            <h3 class="card__name">Lucky Egg</h3>
+            <p class="card__line">Two months at the UK's second-fastest-growing company on The Sunday Times 100. I helped create the French editions of Misheard Music and Misheard Movies.</p>
+            <a class="card__link" href="https://businesscloud.co.uk/news/the-sunday-times-100-revealed-for-2026/" target="_blank" rel="noopener">The ranking <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="tile tile--wide tile--karos reveal" id="m-karos">
+          <div class="feeds2">
+            <figure>
+              <div class="feed" style="--feed-time: 40s">
+                <div class="feed__track">
+                  <img src="img/feed-karos.jpg" width="934" height="1660" alt="Twelve Karos Labs explainer reels: Netflix, the iPhone ad clock, YouTube Premium, Tesla and more" loading="lazy">
+                  <img src="img/feed-karos.jpg" width="934" height="1660" alt="" aria-hidden="true" loading="lazy">
+                </div>
+              </div>
+              <figcaption class="feed__cap">@karoslabs</figcaption>
+            </figure>
+            <figure>
+              <div class="feed feed--down" style="--feed-time: 50s">
+                <div class="feed__track">
+                  <img src="img/feed-deel.jpg" width="934" height="1660" alt="Twelve posts from The Pitch by Deel: jury announcements, the $15M investment pool and founder interviews" loading="lazy">
+                  <img src="img/feed-deel.jpg" width="934" height="1660" alt="" aria-hidden="true" loading="lazy">
+                </div>
+              </div>
+              <figcaption class="feed__cap">@deelpitch</figcaption>
+            </figure>
           </div>
           <div class="card__meta">
             <p class="card__role">Video</p>
             <h3 class="card__name">Karos Labs</h3>
-            <p class="card__line">I make the videos for Karos and its clients: launch films and explainer reels.</p>
+            <p class="card__line">I make the videos for Karos and its clients, including The Pitch by Deel, Deel's $15M global startup competition.</p>
             <a class="card__link" href="https://www.instagram.com/karoslabs/" target="_blank" rel="noopener">@karoslabs <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="card__link" href="https://www.instagram.com/deelpitch/" target="_blank" rel="noopener">@deelpitch <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
           </div>
         </article>
       </div>
@@ -359,10 +400,10 @@
       <div class="make">
         <div class="make__music reveal" data-player>
           <p class="card__role">Music</p>
-          <h3 class="card__name">Click</h3>
+          <h3 class="card__name">The Click Song</h3>
           <p class="card__line">A song I produced.</p>
           <div class="player">
-            <button class="player__btn" type="button" aria-label="Play Click">
+            <button class="player__btn" type="button" aria-label="Play The Click Song">
               <i class="ph ph-play" aria-hidden="true"></i>
             </button>
             <canvas class="player__wave" aria-hidden="true"></canvas>
