@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lola Tamman</title>
+  <meta name="description" content="Co-founder of Sitti. Founding team at Karos Labs. I build products, market them, sell them and raise money for them.">
+  <meta name="color-scheme" content="light dark">
+  <script>try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='8' height='8' fill='%231ed13a'/><rect x='8' width='8' height='8' fill='%23ff2d95'/><rect y='8' width='8' height='8' fill='%232b4cff'/><rect x='8' y='8' width='8' height='8' fill='%23ff5a0a'/></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&display=swap">
+  <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Slit fills for the section words, one per job colour, plus a four-colour one for Make -->
+  <svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <pattern id="slits-build" width="8" height="15" patternUnits="userSpaceOnUse"><rect width="8" height="10" style="fill: var(--build)"/></pattern>
+    <pattern id="slits-market" width="8" height="15" patternUnits="userSpaceOnUse"><rect width="8" height="10" style="fill: var(--market)"/></pattern>
+    <pattern id="slits-raise" width="8" height="15" patternUnits="userSpaceOnUse"><rect width="8" height="10" style="fill: var(--raise)"/></pattern>
+    <pattern id="slits-community" width="8" height="15" patternUnits="userSpaceOnUse"><rect width="8" height="10" style="fill: var(--community)"/></pattern>
+    <pattern id="slits-make" width="8" height="60" patternUnits="userSpaceOnUse">
+      <rect width="8" height="10" style="fill: var(--build)"/>
+      <rect y="15" width="8" height="10" style="fill: var(--market)"/>
+      <rect y="30" width="8" height="10" style="fill: var(--community)"/>
+      <rect y="45" width="8" height="10" style="fill: var(--raise)"/>
+    </pattern>
+  </svg>
+
+  <header class="nav">
+    <a class="nav__brand" href="#top">Lola Tamman</a>
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#build">Build</a>
+      <a href="#market">Market</a>
+      <a href="#raise">Sell &amp; raise</a>
+      <a href="#community">Community</a>
+      <a href="#make">Make</a>
+    </nav>
+    <div class="nav__tools">
+      <button class="tool" type="button" data-theme-toggle>
+        <i class="ph ph-moon" aria-hidden="true"></i><span>Dark</span>
+      </button>
+      <button class="tool" type="button" aria-pressed="false" data-sound>
+        <i class="ph ph-speaker-slash" aria-hidden="true"></i><span>Sound</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <canvas class="hero__wave" aria-hidden="true"></canvas>
+      <div class="hero__copy">
+        <p class="hero__sub">Co-founder of Sitti. Founding team at Karos Labs. I build products, market them, sell them and raise money for them.</p>
+        <a class="btn" href="#build">See the work <i class="ph ph-arrow-down-right" aria-hidden="true"></i></a>
+      </div>
+      <h1 class="hero__name">
+        <span class="sr">Lola Tamman</span>
+        <svg class="one" viewBox="0 0 1000 200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <text x="0" y="200" textLength="1000" lengthAdjust="spacingAndGlyphs">LOLA TAMMAN</text>
+        </svg>
+        <svg class="two" viewBox="0 0 1000 560" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <text x="0" y="262" textLength="1000" lengthAdjust="spacingAndGlyphs">LOLA</text>
+          <text x="0" y="560" textLength="1000" lengthAdjust="spacingAndGlyphs">TAMMAN</text>
+        </svg>
+      </h1>
+    </section>
+
+    <section class="readouts" aria-label="Numbers">
+      <div class="readout" data-job="build">
+        <span class="readout__num" data-count="2000" data-suffix="+">2,000+</span>
+        <span class="readout__label">Sitti app downloads, still growing</span>
+      </div>
+      <div class="readout" data-job="community">
+        <span class="readout__num" data-count="10" data-prefix="$" data-suffix="k">$10k</span>
+        <span class="readout__label">raised for charity through my own outreach</span>
+      </div>
+      <div class="readout" data-job="raise">
+        <span class="readout__num" data-count="200" data-suffix="+">200+</span>
+        <span class="readout__label">paid Sitti maps sold</span>
+      </div>
+      <div class="readout" data-job="market">
+        <span class="readout__num" data-count="200" data-suffix="+">200+</span>
+        <span class="readout__label">Outside Club signups in the first two weeks</span>
+      </div>
+    </section>
+
+    <section class="seq" id="map">
+      <h2 class="seq__title reveal">I've worked every side of a startup.</h2>
+      <p class="seq__sub reveal">Each lit pad is a job I've done. Press play to hear it.</p>
+      <div class="seq__deck reveal">
+        <table class="seq__grid" data-grid></table>
+        <div class="seq__transport">
+          <button class="btn btn--ghost" type="button" aria-pressed="false" data-sound>
+            <i class="ph ph-play" aria-hidden="true"></i><span>Play the grid</span>
+          </button>
+          <span class="seq__bpm">124 BPM</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== BUILD ===================== -->
+    <section class="sect" id="build" data-job="build">
+      <h2 class="sect__word">
+        <span class="sr">Build</span>
+        <svg viewBox="0 0 1000 250" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <text x="0" y="250" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font-size: 346px">BUILD</text>
+        </svg>
+      </h2>
+      <p class="sect__kind">Technology &amp; AI</p>
+
+      <div class="build">
+        <article class="card card--a reveal" id="sitti">
+          <figure class="card__media">
+            <video muted loop playsinline preload="none" poster="media/sitti.jpg" aria-label="Screen recording of the Sitti website">
+              <source src="media/sitti.mp4" type="video/mp4">
+            </video>
+          </figure>
+          <div class="card__meta">
+            <p class="card__role">Co-founder</p>
+            <h3 class="card__name">Sitti</h3>
+            <p class="card__line">Maps of your favourite people's favourite places. I built the website and the app. 2,000+ downloads and growing.</p>
+            <a class="card__link" href="https://www.sitti.app/" target="_blank" rel="noopener">sitti.app <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="card card--b reveal" id="karos">
+          <figure class="card__media">
+            <video muted loop playsinline preload="none" poster="media/karos.jpg" aria-label="Screen recording of the Karos Labs website">
+              <source src="media/karos.mp4" type="video/mp4">
+            </video>
+          </figure>
+          <div class="card__meta">
+            <p class="card__role">Founding team</p>
+            <h3 class="card__name">Karos Labs</h3>
+            <p class="card__line">AI marketing for builders. I designed the app's interface and built AI agents for the engine that turns a company's work into videos.</p>
+            <a class="card__link" href="https://karoslabs.com/" target="_blank" rel="noopener">karoslabs.com <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="card card--c reveal" id="passepartout">
+          <figure class="card__media">
+            <video muted loop playsinline preload="none" poster="media/passepartout.jpg" aria-label="Screen recording of the Your Passepartout website">
+              <source src="media/passepartout.mp4" type="video/mp4">
+            </video>
+          </figure>
+          <div class="card__meta">
+            <p class="card__role">Web &amp; automation</p>
+            <h3 class="card__name">Your Passepartout</h3>
+            <p class="card__line">A boutique travel advisory. I built their website, led the rebrand and automated how they make itineraries, newsletters and city guides.</p>
+            <a class="card__link" href="https://www.yourpassepartout.com/" target="_blank" rel="noopener">yourpassepartout.com <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="card card--d reveal" id="bento">
+          <figure class="card__media">
+            <video muted loop playsinline preload="none" poster="media/bento.jpg" aria-label="Screen recording of Bento Games">
+              <source src="media/bento.mp4" type="video/mp4">
+            </video>
+          </figure>
+          <div class="card__meta">
+            <p class="card__role">Solo build</p>
+            <h3 class="card__name">Bento Games</h3>
+            <p class="card__line">Seven daily puzzle games on one engine I wrote, with streaks, stats and shareable results. Live since October 2026.</p>
+            <a class="card__link" href="https://lola302.github.io/bento-games/" target="_blank" rel="noopener">Play it <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="card card--e reveal" id="glove">
+          <!-- When the glove video arrives, it replaces these four photos -->
+          <div class="glove__photos">
+            <img src="img/glove-4.jpg" width="360" height="480" alt="The whole circuit on the desk: the board, a breadboard and two flex sensors" loading="lazy">
+            <img src="img/glove-1.jpg" width="360" height="480" alt="Three flex sensors wired into the breadboard, one per finger" loading="lazy">
+            <img src="img/glove-3.jpg" width="360" height="480" alt="The three flex sensors standing upright in the breadboard" loading="lazy">
+            <img src="img/glove-2.jpg" width="360" height="480" alt="Close-up of the Seeed XIAO board and its wiring" loading="lazy">
+          </div>
+          <div class="card__meta">
+            <p class="card__role">In progress</p>
+            <h3 class="card__name">Smart Glove</h3>
+            <p class="card__line">A glove that replaces my mouse. Tilt to move, bend a finger to click or scroll, over Bluetooth. The electronics work; the glove is next.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== MARKET ===================== -->
+    <section class="sect" id="market" data-job="market">
+      <h2 class="sect__word">
+        <span class="sr">Market</span>
+        <svg viewBox="0 0 1000 230" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <text x="0" y="230" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font-size: 318px">MARKET</text>
+        </svg>
+      </h2>
+      <p class="sect__kind">Marketing &amp; growth</p>
+
+      <div class="market">
+        <!-- When the Outside Club ads arrive, the number block makes way for them -->
+        <article class="tile tile--a reveal" id="m-outside">
+          <div class="tile__block">
+            <span class="tile__big">200+</span>
+            <span class="tile__small">signups in the first two weeks after launch</span>
+          </div>
+          <div class="card__meta">
+            <p class="card__role">Meta ads &amp; product</p>
+            <h3 class="card__name">Outside Club</h3>
+            <p class="card__line">A screenless watch that helps kids move more, sleep better, handle stress and anxiety, and understand their bodies. I created and ran our Meta ads, and now work on the product.</p>
+          </div>
+        </article>
+
+        <article class="tile tile--b reveal" id="m-luckyegg">
+          <div class="tile__block tile__block--ink">
+            <span class="tile__big">#2</span>
+            <span class="tile__small">on The Sunday Times 100, the UK's fastest-growing companies, 2026</span>
+          </div>
+          <div class="card__meta">
+            <p class="card__role">Summer 2026</p>
+            <h3 class="card__name">Lucky Egg</h3>
+            <p class="card__line">Two months at the games company. I helped create the French editions of Misheard Music and Misheard Movies.</p>
+            <a class="card__link" href="https://businesscloud.co.uk/news/the-sunday-times-100-revealed-for-2026/" target="_blank" rel="noopener">The ranking <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <!-- Three feeds that scroll on their own, like phones side by side. Each image is in twice so the loop has no seam. -->
+        <article class="tile tile--feed reveal" id="m-sitti">
+          <div class="feed" style="--feed-time: 46s">
+            <div class="feed__track">
+              <img src="img/feed-sitti.jpg" width="934" height="1660" alt="Twelve posts from Sitti's Instagram: food lists, city guides and creators' maps for London" loading="lazy">
+              <img src="img/feed-sitti.jpg" width="934" height="1660" alt="" aria-hidden="true" loading="lazy">
+            </div>
+          </div>
+          <div class="card__meta">
+            <p class="card__role">Instagram from zero</p>
+            <h3 class="card__name">Sitti</h3>
+            <p class="card__line">I started Sitti's Instagram from nothing and make the posts: city guides, food lists and creators' maps.</p>
+            <a class="card__link" href="https://www.instagram.com/sitti.app/" target="_blank" rel="noopener">@sitti.app <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="tile tile--feed reveal" id="m-whyl">
+          <div class="tile__block">
+            <span class="tile__big">100k+</span>
+            <span class="tile__small">views on our content in the first two weeks after launch</span>
+          </div>
+          <div class="card__meta">
+            <p class="card__role">Media manager</p>
+            <h3 class="card__name">WHYL</h3>
+            <p class="card__line">A Chrome extension that pays you while your AI is thinking. As media manager, I ran the founders' X accounts and the launch content.</p>
+            <a class="card__link" href="https://whyl.ai/" target="_blank" rel="noopener">whyl.ai <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+
+        <article class="tile tile--feed reveal" id="m-karos">
+          <div class="feed" style="--feed-time: 40s">
+            <div class="feed__track">
+              <img src="img/feed-karos.jpg" width="934" height="1660" alt="Twelve Karos Labs explainer reels: Netflix, the iPhone ad clock, YouTube Premium, Tesla and more" loading="lazy">
+              <img src="img/feed-karos.jpg" width="934" height="1660" alt="" aria-hidden="true" loading="lazy">
+            </div>
+          </div>
+          <div class="card__meta">
+            <p class="card__role">Video</p>
+            <h3 class="card__name">Karos Labs</h3>
+            <p class="card__line">I make the videos for Karos and its clients: launch films and explainer reels.</p>
+            <a class="card__link" href="https://www.instagram.com/karoslabs/" target="_blank" rel="noopener">@karoslabs <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===================== SELL & RAISE ===================== -->
+    <section class="sect" id="raise" data-job="raise">
+      <h2 class="sect__word">
+        <span class="sr">Sell &amp; raise</span>
+        <svg viewBox="0 0 1000 150" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <text x="0" y="150" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font-size: 207px">SELL &amp; RAISE</text>
+        </svg>
+      </h2>
+      <p class="sect__kind">Sales &amp; fundraising</p>
+
+      <ol class="ledger">
+        <li class="ledger__row reveal" id="r-karos">
+          <span class="ledger__num">$100k</span>
+          <div class="ledger__body">
+            <p class="card__role">Karos Labs</p>
+            <p class="ledger__text">Raised on the founding team. I helped bring the investors in.</p>
+          </div>
+        </li>
+        <li class="ledger__row reveal" id="r-impact">
+          <span class="ledger__num">$10k</span>
+          <div class="ledger__body">
+            <p class="card__role">Project impACT</p>
+            <p class="ledger__text">Brought in personally, by reaching out to donors one by one. It went toward the $50k+ our team raised for charity.</p>
+          </div>
+        </li>
+        <li class="ledger__row reveal" id="r-sitti">
+          <span class="ledger__num">200+</span>
+          <div class="ledger__body">
+            <p class="card__role">Sitti</p>
+            <p class="ledger__text">Paid maps sold. Creators sell their recommendations as maps, and we earn on every sale.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===================== COMMUNITY ===================== -->
+    <section class="sect" id="community" data-job="community">
+      <h2 class="sect__word">
+        <span class="sr">Community</span>
+        <svg viewBox="0 0 1000 170" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <text x="0" y="170" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font-size: 235px">COMMUNITY</text>
+        </svg>
+      </h2>
+      <p class="sect__kind">Bringing people together</p>
+
+      <div class="panel reveal" id="c-impact">
+        <div class="panel__main">
+          <p class="panel__role">Senior ambassador, since 2023</p>
+          <h3 class="panel__name">Project impACT</h3>
+          <p class="panel__line">I grow our volunteer team and plan and lead our sessions. Together we've raised $50k+ for charity, and $10k of it came through my own outreach.</p>
+        </div>
+        <ul class="panel__also">
+          <li><span class="panel__num">300+</span>pairs of socks from a school-wide drive I organised</li>
+          <li><span class="panel__num">Co-founder</span>of my school's Personal Finance Club, with weekly sessions on budgeting, saving and investing</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ===================== MAKE ===================== -->
+    <section class="sect" id="make" data-job="make">
+      <h2 class="sect__word">
+        <span class="sr">Make</span>
+        <svg viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <text x="0" y="300" textLength="1000" lengthAdjust="spacingAndGlyphs" style="font-size: 415px">MAKE</text>
+        </svg>
+      </h2>
+      <p class="sect__kind">Photography, music, writing &amp; science</p>
+
+      <div class="rail" data-rail tabindex="0" role="region" aria-label="My photographs">
+        <figure><img src="img/gallery/p05.jpg" width="1600" height="1066" alt="Waves breaking on a beach at golden hour, from above" loading="lazy"></figure>
+        <figure><img src="img/gallery/p02.jpg" width="1600" height="1066" alt="A bus and a van under palm trees on a seaside road" loading="lazy"></figure>
+        <figure><img src="img/gallery/p07.jpg" width="1600" height="1066" alt="A figure walking through a stone archway" loading="lazy"></figure>
+        <figure><img src="img/gallery/p01.jpg" width="1600" height="1066" alt="Portrait of a girl looking up in warm light" loading="lazy"></figure>
+        <figure><img src="img/gallery/p08.jpg" width="1600" height="1203" alt="A footballer mid bicycle kick in a packed stadium" loading="lazy"></figure>
+        <figure><img src="img/gallery/p10.jpg" width="1600" height="1066" alt="A swimmer floating in a turquoise pool" loading="lazy"></figure>
+        <figure><img src="img/gallery/p11.jpg" width="1066" height="1600" alt="A curved white tower against a blue sky" loading="lazy"></figure>
+        <figure><img src="img/gallery/p03.jpg" width="1600" height="1066" alt="A man sitting on a rooftop ledge between tall buildings, framed by an awning" loading="lazy"></figure>
+        <figure><img src="img/gallery/p12.jpg" width="1600" height="1066" alt="Red desert hills at dusk" loading="lazy"></figure>
+        <figure><img src="img/gallery/p06.jpg" width="1600" height="1066" alt="A crowded beach seen from above" loading="lazy"></figure>
+        <figure><img src="img/gallery/p09.jpg" width="1600" height="1066" alt="A gazebo under a large tree in a green park" loading="lazy"></figure>
+        <figure><img src="img/gallery/p04.jpg" width="1600" height="1066" alt="A boy standing on a sandy beach" loading="lazy"></figure>
+        <figure><img src="img/gallery/p13.jpg" width="1600" height="1066" alt="A desert landscape at dusk" loading="lazy"></figure>
+        <figure><img src="img/gallery/p14.jpg" width="1600" height="1066" alt="Sunlight on waves rolling onto a beach" loading="lazy"></figure>
+      </div>
+      <div class="rail__nav">
+        <button class="tool" type="button" data-rail-step="-1" aria-label="Previous photos"><i class="ph ph-arrow-left" aria-hidden="true"></i></button>
+        <button class="tool" type="button" data-rail-step="1" aria-label="Next photos"><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+      </div>
+
+      <div class="make">
+        <div class="make__music reveal" data-player>
+          <p class="card__role">Music</p>
+          <h3 class="card__name">Click</h3>
+          <p class="card__line">A song I produced.</p>
+          <div class="player">
+            <button class="player__btn" type="button" aria-label="Play Click">
+              <i class="ph ph-play" aria-hidden="true"></i>
+            </button>
+            <canvas class="player__wave" aria-hidden="true"></canvas>
+          </div>
+          <div class="player__bar">
+            <input class="player__seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Position in the song">
+            <span class="player__time">0:00 / 5:34</span>
+          </div>
+          <audio preload="none" src="media/song.mp3"></audio>
+        </div>
+        <div class="make__side">
+          <div class="make__item reveal" data-job="market">
+            <p class="card__role">Writing</p>
+            <h3 class="card__name">Writers Seminar</h3>
+            <p class="card__line">Selected for a year-long creative writing seminar with the author Ben Faccini.</p>
+          </div>
+          <div class="make__item reveal" data-job="community">
+            <p class="card__role">Science</p>
+            <h3 class="card__name">The ribosome</h3>
+            <p class="card__line">Took Stanford's course on the ribosome through Coursera, outside school.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>Lola Tamman</span>
+    <span>Applying to The Academy, Founding Class of 2027</span>
+  </footer>
+
+  <script src="main.js" type="module"></script>
+</body>
+</html>
