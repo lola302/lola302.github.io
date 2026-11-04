@@ -674,3 +674,17 @@ img { display: block; max-width: 100%; }
 @media (max-width: 400px) {
   .tool--link span { display: none; }
 }
+
+/* ---------- My photo, beside the language buttons at the top of the intro ---------- */
+.hero__me { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 16px; }
+/* The one round element on the page: a face reads better in a circle than in a hard square */
+.hero__photo {
+  width: clamp(64px, 6vw, 84px);
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--fg);
+}
+/* Wide enough for the photo plus all four language buttons on one row */
+.hero__copy { max-width: 31rem; }
