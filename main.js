@@ -239,6 +239,34 @@ function player() {
   new ResizeObserver(size).observe(canvas);
 }
 
+// ---------- Hero intro in each language I speak ----------
+const INTRO = {
+  en: "I'm Lola. I co-founded Sitti and I'm on the founding team at Karos Labs, and I love getting involved in every part of a startup, from building the product to getting people to use it.",
+  fr: "Je suis Lola. J'ai cofondé Sitti, je fais partie de l'équipe fondatrice de Karos Labs, et j'adore m'impliquer dans chaque partie d'une startup, de la création du produit jusqu'au moment où les gens commencent à l'utiliser.",
+  es: 'Soy Lola. Cofundé Sitti, formo parte del equipo fundador de Karos Labs y me encanta involucrarme en cada parte de una startup, desde crear el producto hasta conseguir que la gente lo use.',
+  it: 'Sono Lola. Ho cofondato Sitti, faccio parte del team fondatore di Karos Labs e adoro occuparmi di ogni parte di una startup, dalla creazione del prodotto fino a far sì che le persone lo usino.',
+};
+
+function languages() {
+  const line = document.querySelector('.hero__sub');
+  const buttons = document.querySelectorAll('.lang');
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const lang = btn.dataset.lang;
+      if (line.lang === lang) return;
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+      const swap = () => {
+        line.textContent = INTRO[lang];
+        line.lang = lang;
+        line.classList.remove('is-switching');
+      };
+      if (reduce) { swap(); return; }
+      line.classList.add('is-switching');
+      setTimeout(swap, 250);
+    });
+  });
+}
+
 // ---------- Photo rail: arrow buttons step most of a screen at a time ----------
 function rail() {
   const el = document.querySelector('[data-rail]');
@@ -266,6 +294,7 @@ wave();
 videos();
 feeds();
 player();
+languages();
 rail();
 countUp();
 reveal();

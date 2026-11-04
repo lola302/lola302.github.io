@@ -640,3 +640,30 @@ img { display: block; max-width: 100%; }
 /* Longer intro paragraphs */
 .seq__sub { max-width: 62ch; color: var(--fg-2); }
 .rail__intro { max-width: 62ch; margin-top: 12px; color: var(--fg-2); }
+
+/* ---------- Language switcher: the intro line in each language I speak ---------- */
+.langs { display: grid; gap: 10px; }
+.langs__label { font-size: 14px; font-weight: 500; color: var(--mute); }
+.langs__btns { display: flex; flex-wrap: wrap; gap: 6px; }
+.lang {
+  height: 34px;
+  padding: 0 12px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--line);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), border-color 0.2s, color 0.2s;
+}
+.lang:hover { border-color: var(--fg); }
+.lang:nth-child(1) { --c: var(--build); }
+.lang:nth-child(2) { --c: var(--market); }
+.lang:nth-child(3) { --c: var(--raise); }
+.lang:nth-child(4) { --c: var(--community); --on: var(--on-community); }
+.lang[aria-pressed="true"] { color: var(--on, #0d0e0c); background: var(--c); border-color: var(--c); }
+.hero__sub { transition: opacity 0.25s var(--ease); }
+.hero__sub.is-switching { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .lang, .hero__sub { transition: none; }
+}

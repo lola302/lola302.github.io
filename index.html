@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
   <!-- Slit fills for the section words, one per job colour, plus a four-colour one for Make -->
@@ -49,7 +49,17 @@
     <section class="hero">
       <canvas class="hero__wave" aria-hidden="true"></canvas>
       <div class="hero__copy">
-        <p class="hero__sub">I'm Lola. I co-founded Sitti and I'm on the founding team at Karos Labs, and I love getting involved in every part of a startup, from building the product to getting people to use it.</p>
+        <!-- The intro line below switches into each language I speak -->
+        <div class="langs" role="group" aria-label="Read my intro in another language">
+          <p class="langs__label">I speak four languages, so pick one:</p>
+          <div class="langs__btns">
+            <button class="lang" type="button" data-lang="en" lang="en" aria-pressed="true">English</button>
+            <button class="lang" type="button" data-lang="fr" lang="fr" aria-pressed="false">Français</button>
+            <button class="lang" type="button" data-lang="es" lang="es" aria-pressed="false">Español</button>
+            <button class="lang" type="button" data-lang="it" lang="it" aria-pressed="false">Italiano</button>
+          </div>
+        </div>
+        <p class="hero__sub" lang="en" aria-live="polite">I'm Lola. I co-founded Sitti and I'm on the founding team at Karos Labs, and I love getting involved in every part of a startup, from building the product to getting people to use it.</p>
         <a class="btn" href="#build">See the work <i class="ph ph-arrow-down-right" aria-hidden="true"></i></a>
       </div>
       <h1 class="hero__name">
@@ -481,6 +491,6 @@
     <span>Applying to The Academy, Founding Class of 2027</span>
   </footer>
 
-  <script src="main.js?v=8" type="module"></script>
+  <script src="main.js?v=9" type="module"></script>
 </body>
 </html>
