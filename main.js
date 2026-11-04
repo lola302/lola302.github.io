@@ -36,12 +36,12 @@ const VENTURES = [
   { name: 'Sitti', role: 'Co-founder', jobs: ['#sitti', '#m-sitti', '#r-sitti', null] },
   { name: 'Karos Labs', role: 'Founding team', jobs: ['#karos', '#m-karos', '#r-karos', null] },
   { name: 'Outside Club', role: 'Marketing & product', jobs: ['#m-outside', '#m-outside', null, null] },
-  { name: 'WHYL', role: 'Media manager', jobs: [null, '#m-whyl', null, null] },
+  { name: 'WHYL', role: 'Social media manager', jobs: [null, '#m-whyl', null, null] },
   { name: 'Your Passepartout', role: 'Web & automation', jobs: ['#passepartout', '#passepartout', null, null] },
   { name: 'Lucky Egg', role: 'Summer 2026', jobs: [null, '#m-luckyegg', null, null] },
-  { name: 'Bento Games', role: 'Solo build', jobs: ['#bento', null, null, null] },
+  { name: 'Bento Games', role: 'Side project', jobs: ['#bento', null, null, null] },
   { name: 'Smart Glove', role: 'In progress', jobs: ['#glove', null, null, null] },
-  { name: 'First Chair', role: 'Personal app', jobs: ['#firstchair', null, null, null] },
+  { name: 'First Chair', role: 'Side project', jobs: ['#firstchair', null, null, null] },
   { name: 'Project impACT', role: 'Senior ambassador', jobs: [null, null, '#r-impact', '#c-impact'] },
 ];
 
