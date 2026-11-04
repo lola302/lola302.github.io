@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=JetBrains+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <!-- Slit fills for the section words, one per job colour, plus a four-colour one for Make -->
@@ -41,9 +41,6 @@
     <div class="nav__tools">
       <button class="tool" type="button" data-theme-toggle>
         <i class="ph ph-moon" aria-hidden="true"></i><span>Dark</span>
-      </button>
-      <button class="tool" type="button" aria-pressed="false" data-sound>
-        <i class="ph ph-speaker-slash" aria-hidden="true"></i><span>Sound</span>
       </button>
     </div>
   </header>
@@ -86,16 +83,48 @@
       </div>
     </section>
 
+    <!-- The four sides of a startup, and where I've done each one. Every name jumps to its entry below. -->
     <section class="seq" id="map">
       <h2 class="seq__title reveal">I've worked every side of a startup.</h2>
-      <p class="seq__sub reveal">Each lit pad is a job I've done. Press play to hear it.</p>
-      <div class="seq__deck reveal">
-        <table class="seq__grid" data-grid></table>
-        <div class="seq__transport">
-          <button class="btn btn--ghost" type="button" aria-pressed="false" data-sound>
-            <i class="ph ph-play" aria-hidden="true"></i><span>Play the grid</span>
-          </button>
-          <span class="seq__bpm">124 BPM</span>
+      <p class="seq__sub reveal">Here's where I've done each one. Tap a name to see the work.</p>
+      <div class="sides reveal">
+        <div class="side" data-job="build">
+          <h3 class="side__name"><a href="#build">Build</a></h3>
+          <ul class="side__list">
+            <li><a href="#sitti">Sitti</a><span>website and app design</span></li>
+            <li><a href="#karos">Karos Labs</a><span>AI agents and app interface</span></li>
+            <li><a href="#passepartout">Your Passepartout</a><span>website and automation</span></li>
+            <li><a href="#m-outside">Outside Club</a><span>product design</span></li>
+            <li><a href="#bento">Bento Games</a><span>daily puzzle games</span></li>
+            <li><a href="#firstchair">First Chair</a><span>ski training app</span></li>
+            <li><a href="#glove">Smart Glove</a><span>hardware, in progress</span></li>
+          </ul>
+        </div>
+        <div class="side" data-job="market">
+          <h3 class="side__name"><a href="#market">Market</a></h3>
+          <ul class="side__list">
+            <li><a href="#m-outside">Outside Club</a><span>Meta ads, 200+ signups</span></li>
+            <li><a href="#m-sitti">Sitti</a><span>Instagram and creators</span></li>
+            <li><a href="#m-karos">Karos Labs</a><span>Instagram for Karos and Deel</span></li>
+            <li><a href="#m-whyl">WHYL</a><span>social media, 100k+ views</span></li>
+            <li><a href="#m-luckyegg">Lucky Egg</a><span>Misheard Music and Movies</span></li>
+          </ul>
+        </div>
+        <div class="side" data-job="raise">
+          <h3 class="side__name"><a href="#raise">Sell &amp; raise</a></h3>
+          <ul class="side__list">
+            <li><a href="#r-karos">Karos Labs</a><span>investors, $1M valuation</span></li>
+            <li><a href="#r-impact">Project impACT</a><span>$50k+ fundraiser</span></li>
+            <li><a href="#r-sitti">Sitti</a><span>200+ paid maps</span></li>
+          </ul>
+        </div>
+        <div class="side" data-job="community">
+          <h3 class="side__name"><a href="#community">Community</a></h3>
+          <ul class="side__list">
+            <li><a href="#c-impact">Project impACT</a><span>senior ambassador</span></li>
+            <li><a href="#c-impact">Sock drives</a><span>500+ pairs collected</span></li>
+            <li><a href="#c-impact">Personal Finance Club</a><span>co-founder</span></li>
+          </ul>
         </div>
       </div>
     </section>
@@ -376,6 +405,14 @@
       </h2>
       <p class="sect__kind">Photography, music, writing &amp; science</p>
 
+      <div class="rail__head">
+        <p class="rail__title">Photo gallery <i class="ph ph-arrow-right" aria-hidden="true"></i></p>
+        <div class="rail__nav">
+          <button class="tool" type="button" data-rail-step="-1" aria-label="Previous photos"><i class="ph ph-arrow-left" aria-hidden="true"></i></button>
+          <button class="tool" type="button" data-rail-step="1" aria-label="Next photos"><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="rail-wrap">
       <div class="rail" data-rail tabindex="0" role="region" aria-label="My photographs">
         <figure><img src="img/gallery/p05.jpg" width="1600" height="1066" alt="Waves breaking on a beach at golden hour, from above" loading="lazy"></figure>
         <figure><img src="img/gallery/p02.jpg" width="1600" height="1066" alt="A bus and a van under palm trees on a seaside road" loading="lazy"></figure>
@@ -392,16 +429,13 @@
         <figure><img src="img/gallery/p13.jpg" width="1600" height="1066" alt="A desert landscape at dusk" loading="lazy"></figure>
         <figure><img src="img/gallery/p14.jpg" width="1600" height="1066" alt="Sunlight on waves rolling onto a beach" loading="lazy"></figure>
       </div>
-      <div class="rail__nav">
-        <button class="tool" type="button" data-rail-step="-1" aria-label="Previous photos"><i class="ph ph-arrow-left" aria-hidden="true"></i></button>
-        <button class="tool" type="button" data-rail-step="1" aria-label="Next photos"><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
       </div>
 
       <div class="make">
         <div class="make__music reveal" data-player>
           <p class="card__role">Music</p>
           <h3 class="card__name">The Click Song</h3>
-          <p class="card__line">A song I produced.</p>
+          <p class="card__line">A song I produced. Music is one of the things I love most: I learned music production, I DJ, and I play the piano and the guitar.</p>
           <div class="player">
             <button class="player__btn" type="button" aria-label="Play The Click Song">
               <i class="ph ph-play" aria-hidden="true"></i>
@@ -435,6 +469,6 @@
     <span>Applying to The Academy, Founding Class of 2027</span>
   </footer>
 
-  <script src="main.js?v=4" type="module"></script>
+  <script src="main.js?v=5" type="module"></script>
 </body>
 </html>

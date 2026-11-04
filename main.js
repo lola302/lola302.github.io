@@ -24,186 +24,7 @@ document.querySelector('[data-theme-toggle]').addEventListener('click', () => {
   readPalette();
 });
 
-// ---------- The map: one row per venture, one column per job ----------
-const JOBS = [
-  { name: 'Build', href: '#build' },
-  { name: 'Market', href: '#market' },
-  { name: 'Sell & raise', href: '#raise' },
-  { name: 'Community', href: '#community' },
-];
-// Each entry in `jobs` is where that pad jumps to on the page, or null if it's not a job I did there
-const VENTURES = [
-  { name: 'Sitti', role: 'Co-founder', jobs: ['#sitti', '#m-sitti', '#r-sitti', null] },
-  { name: 'Karos Labs', role: 'Founding team', jobs: ['#karos', '#m-karos', '#r-karos', null] },
-  { name: 'Outside Club', role: 'Marketing & product', jobs: ['#m-outside', '#m-outside', null, null] },
-  { name: 'WHYL', role: 'Social media manager', jobs: [null, '#m-whyl', null, null] },
-  { name: 'Your Passepartout', role: 'Web & automation', jobs: ['#passepartout', '#passepartout', null, null] },
-  { name: 'Lucky Egg', role: 'Summer 2026', jobs: [null, '#m-luckyegg', null, null] },
-  { name: 'Bento Games', role: 'Side project', jobs: ['#bento', null, null, null] },
-  { name: 'Smart Glove', role: 'In progress', jobs: ['#glove', null, null, null] },
-  { name: 'First Chair', role: 'Side project', jobs: ['#firstchair', null, null, null] },
-  { name: 'Project impACT', role: 'Senior ambassador', jobs: [null, null, '#r-impact', '#c-impact'] },
-];
-
-function renderGrid() {
-  const table = document.querySelector('[data-grid]');
-  // Soft hyphen lets "Community" break on narrow phones instead of overflowing its column
-  const head = JOBS.map((job, c) => `<th scope="col" data-col="${c}"><a href="${job.href}">${job.name.replace('Community', 'Commu&shy;nity')}</a></th>`).join('');
-  const rows = VENTURES.map((v) => {
-    const cells = v.jobs.map((href, c) => (href
-      ? `<td data-col="${c}"><a class="pad on" href="${href}"><span class="sr">${v.name}: ${JOBS[c].name}</span></a></td>`
-      : `<td data-col="${c}"><span class="pad"></span></td>`)).join('');
-    return `<tr><th scope="row"><span class="venture">${v.name}</span><span class="venture-role">${v.role}</span></th>${cells}</tr>`;
-  }).join('');
-  table.innerHTML = `<caption class="sr">Which jobs I've done at each company</caption><colgroup><col class="c-name"><col span="4"></colgroup><thead><tr><td></td>${head}</tr></thead><tbody>${rows}</tbody>`;
-}
-
-// ---------- Sound: the grid plays as a four-beat loop ----------
-const BPM = 124;
-const BEAT = 60 / BPM;
-// A minor pentatonic, top row highest
-const NOTES = [784, 659.25, 587.33, 523.25, 440, 392, 329.63, 293.66, 261.63, 220];
-
-const audio = { ctx: null, master: null, analyser: null, data: null, noise: null, playing: false, step: 0, next: 0, timer: 0 };
-
-function initAudio() {
-  const ctx = new AudioContext();
-  const comp = ctx.createDynamicsCompressor();
-  const master = ctx.createGain();
-  const analyser = ctx.createAnalyser();
-  master.gain.value = 0.5;
-  analyser.fftSize = 1024;
-  master.connect(comp);
-  comp.connect(ctx.destination);
-  comp.connect(analyser);
-
-  const noise = ctx.createBuffer(1, ctx.sampleRate * 0.1, ctx.sampleRate);
-  const ch = noise.getChannelData(0);
-  for (let i = 0; i < ch.length; i++) ch[i] = Math.random() * 2 - 1;
-
-  Object.assign(audio, { ctx, master, analyser, noise, data: new Float32Array(analyser.fftSize) });
-}
-
-function kick(t) {
-  const { ctx, master } = audio;
-  const o = ctx.createOscillator();
-  const g = ctx.createGain();
-  o.frequency.setValueAtTime(150, t);
-  o.frequency.exponentialRampToValueAtTime(42, t + 0.14);
-  g.gain.setValueAtTime(0.9, t);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.32);
-  o.connect(g).connect(master);
-  o.start(t);
-  o.stop(t + 0.34);
-}
-
-function hat(t) {
-  const { ctx, master, noise } = audio;
-  const s = ctx.createBufferSource();
-  const hp = ctx.createBiquadFilter();
-  const g = ctx.createGain();
-  s.buffer = noise;
-  hp.type = 'highpass';
-  hp.frequency.value = 7500;
-  g.gain.setValueAtTime(0.12, t);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.05);
-  s.connect(hp).connect(g).connect(master);
-  s.start(t);
-  s.stop(t + 0.06);
-}
-
-function pluck(freq, t) {
-  const { ctx, master } = audio;
-  const tri = ctx.createOscillator();
-  const saw = ctx.createOscillator();
-  const sawGain = ctx.createGain();
-  const lp = ctx.createBiquadFilter();
-  const g = ctx.createGain();
-  tri.type = 'triangle';
-  saw.type = 'sawtooth';
-  tri.frequency.value = freq;
-  saw.frequency.value = freq * 1.005;
-  sawGain.gain.value = 0.25;
-  lp.type = 'lowpass';
-  lp.frequency.setValueAtTime(3200, t);
-  lp.frequency.exponentialRampToValueAtTime(600, t + 0.3);
-  g.gain.setValueAtTime(0.0001, t);
-  g.gain.exponentialRampToValueAtTime(0.16, t + 0.008);
-  g.gain.exponentialRampToValueAtTime(0.0001, t + 0.42);
-  tri.connect(lp);
-  saw.connect(sawGain).connect(lp);
-  lp.connect(g).connect(master);
-  for (const o of [tri, saw]) { o.start(t); o.stop(t + 0.45); }
-}
-
-function scheduleStep(step, t) {
-  kick(t);
-  hat(t + BEAT / 2);
-  VENTURES.forEach((v, i) => { if (v.jobs[step]) pluck(NOTES[i], t + i * 0.028); });
-
-  setTimeout(() => showStep(step), Math.max(0, (t - audio.ctx.currentTime) * 1000));
-}
-
-function tick() {
-  while (audio.next < audio.ctx.currentTime + 0.12) {
-    scheduleStep(audio.step, audio.next);
-    audio.next += BEAT;
-    audio.step = (audio.step + 1) % JOBS.length;
-  }
-}
-
-function showStep(step) {
-  if (!audio.playing && step >= 0) return;
-  document.querySelectorAll('[data-grid] .is-step').forEach((el) => el.classList.remove('is-step'));
-  if (step < 0) return;
-  document.querySelectorAll(`[data-grid] [data-col="${step}"]`).forEach((el) => {
-    el.classList.add('is-step');
-    const pad = el.querySelector('.pad.on');
-    if (pad) {
-      pad.classList.add('hit');
-      setTimeout(() => pad.classList.remove('hit'), 140);
-    }
-  });
-}
-
-function start() {
-  if (!audio.ctx) initAudio();
-  document.querySelector('[data-player] audio')?.pause();
-  audio.ctx.resume();
-  audio.playing = true;
-  audio.step = 0;
-  audio.next = audio.ctx.currentTime + 0.06;
-  tick();
-  audio.timer = setInterval(tick, 25);
-  syncSoundButtons();
-}
-
-function stop() {
-  clearInterval(audio.timer);
-  audio.playing = false;
-  showStep(-1);
-  syncSoundButtons();
-}
-
-function syncSoundButtons() {
-  document.querySelectorAll('[data-sound]').forEach((btn) => {
-    btn.setAttribute('aria-pressed', String(audio.playing));
-    const icon = btn.querySelector('i');
-    const label = btn.querySelector('span');
-    if (btn.classList.contains('tool')) {
-      icon.className = `ph ${audio.playing ? 'ph-speaker-high' : 'ph-speaker-slash'}`;
-    } else {
-      icon.className = `ph ${audio.playing ? 'ph-stop' : 'ph-play'}`;
-      label.textContent = audio.playing ? 'Stop' : 'Play the grid';
-    }
-  });
-}
-
-document.querySelectorAll('[data-sound]').forEach((btn) => {
-  btn.addEventListener('click', () => (audio.playing ? stop() : start()));
-});
-
-// ---------- Hero waveform: four colours, follows the cursor and the beat ----------
+// ---------- Hero waveform: four colours that follow the cursor ----------
 function wave() {
   const canvas = document.querySelector('.hero__wave');
   const g = canvas.getContext('2d');
@@ -225,18 +46,9 @@ function wave() {
     const t = (now - t0) / 1000;
     pointer.x += (pointer.target - pointer.x) * 0.06;
 
-    let level = 0;
-    const live = audio.playing && audio.analyser;
-    if (live) {
-      audio.analyser.getFloatTimeDomainData(audio.data);
-      let sum = 0;
-      for (const v of audio.data) sum += v * v;
-      level = Math.sqrt(sum / audio.data.length);
-    }
-
     const mobile = w < 768;
     const mid = h * (mobile ? 0.34 : 0.44);
-    const amp = h * (mobile ? 0.15 : 0.2) * (1 + level * 4);
+    const amp = h * (mobile ? 0.15 : 0.2);
     g.clearRect(0, 0, w, h);
 
     // Four bold lines (one per job colour) with a fainter echo of each behind
@@ -253,8 +65,7 @@ function wave() {
         const env = Math.exp(-((u - pointer.x) ** 2) / 0.012)
           + 0.55 * Math.exp(-((u - 0.22) ** 2) / 0.008)
           + 0.35 * Math.exp(-((u - 0.84) ** 2) / 0.006);
-        let y = mid + amp * env * Math.sin(u * 48 - t * speed + phase) * (1 - (i % 4) * 0.08);
-        if (live && i === 0) y += audio.data[Math.floor(u * (audio.data.length - 1))] * amp * 1.6;
+        const y = mid + amp * env * Math.sin(u * 48 - t * speed + phase) * (1 - (i % 4) * 0.08);
         if (x === 0) g.moveTo(x, y); else g.lineTo(x, y);
       }
       g.stroke();
@@ -342,6 +153,7 @@ function player() {
   const canvas = box.querySelector('.player__wave');
   const g = canvas.getContext('2d');
   const title = box.querySelector('.card__name').textContent;
+  let ctx = null;
   let analyser = null;
   let data = null;
   let raf = 0;
@@ -351,13 +163,13 @@ function player() {
   const showTime = () => { time.textContent = `${fmt(el.currentTime)} / ${fmt(total())}`; };
 
   function connect() {
-    if (analyser) return;
-    if (!audio.ctx) initAudio();
-    analyser = audio.ctx.createAnalyser();
+    if (ctx) return;
+    ctx = new AudioContext();
+    analyser = ctx.createAnalyser();
     analyser.fftSize = 2048;
     data = new Float32Array(analyser.fftSize);
-    audio.ctx.createMediaElementSource(el).connect(analyser);
-    analyser.connect(audio.ctx.destination);
+    ctx.createMediaElementSource(el).connect(analyser);
+    analyser.connect(ctx.destination);
   }
 
   function size() {
@@ -392,9 +204,8 @@ function player() {
 
   btn.addEventListener('click', () => {
     connect();
-    audio.ctx.resume();
+    ctx.resume();
     if (el.paused) {
-      if (audio.playing) stop();
       el.play();
     } else {
       el.pause();
@@ -451,7 +262,6 @@ function reveal() {
 
 readPalette();
 syncThemeButton();
-renderGrid();
 wave();
 videos();
 feeds();
