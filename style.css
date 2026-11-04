@@ -667,3 +667,10 @@ img { display: block; max-width: 100%; }
 @media (prefers-reduced-motion: reduce) {
   .lang, .hero__sub { transition: none; }
 }
+
+/* LinkedIn sits in the menu bar next to the theme toggle */
+.tool--link { text-decoration: none; }
+.tool--link i { font-size: 16px; }
+@media (max-width: 400px) {
+  .tool--link span { display: none; }
+}
