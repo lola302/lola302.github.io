@@ -617,3 +617,11 @@ img { display: block; max-width: 100%; }
   .panel { grid-template-columns: 1fr; }
   .rail figure { height: 15rem; }
 }
+
+/* ---------- Writing pieces: each opens the PDF in a new tab ---------- */
+.pieces { display: grid; gap: 10px; margin-top: 8px; padding: 0; list-style: none; }
+.pieces li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.pieces a { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.pieces a b { font-weight: 600; text-decoration: underline 2px var(--c); text-underline-offset: 5px; }
+.pieces a i { color: var(--c-ink); }
+.pieces span { font-size: 14px; color: var(--mute); }
